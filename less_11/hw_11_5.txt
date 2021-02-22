@@ -1,0 +1,20 @@
+Организуйте хранение категорий и товарных позиций учебной базы данных shop в СУБД MongoDB.
+
+
+> db.catalogs.insert({name: "cpu"})
+WriteResult({ "nInserted" : 1 })
+> db.catalogs.insert({name: "motherboard"})
+WriteResult({ "nInserted" : 1 })
+> db.products.find()
+> db.catalogs.find()
+{ "_id" : ObjectId("60343937e4088d6cba8e8efe"), "name" : "cpu" }
+{ "_id" : ObjectId("6034393be4088d6cba8e8eff"), "name" : "motherboard" }
+> db.products.insert({catalog_id: ObjectId("60343937e4088d6cba8e8efe"), name: "intel xeon 9999", description: "intel xeon fastest cpu", price: 134562})
+WriteResult({ "nInserted" : 1 })
+> db.products.insert({catalog_id: ObjectId("6034393be4088d6cba8e8eff"), name: "asus 555", description: "asus 555 motherboard", price: 1332})
+WriteResult({ "nInserted" : 1 })
+> db.products.find()
+{ "_id" : ObjectId("6034398ee4088d6cba8e8f00"), "catalog_id" : ObjectId("60343937e4088d6cba8e8efe"), "name" : "intel xeon 9999", "description" : "intel xeon fastest cpu", "price" : 134562 }
+{ "_id" : ObjectId("603439bce4088d6cba8e8f01"), "catalog_id" : ObjectId("6034393be4088d6cba8e8eff"), "name" : "asus 555", "description" : "asus 555 motherboard", "price" : 1332 }
+> 
+
